@@ -11,11 +11,11 @@
 **docker-compose.yml**:
 Ce fichier définit les services nécessaires à l'exécution du projet dans un environnement Docker. Il contient des services pour :
 
-Postgres : Base de données pour Airflow.
-MongoDB : Base de données NoSQL utilisée pour stocker les données traitées.
-Airflow : Plusieurs services pour exécuter Apache Airflow (Scheduler, Webserver, Init).
-Superset : Pour la visualisation des données.
-Redis et MySQL : Pour d'autres services liés à Airflow et à la gestion des flux de travail.
+**Postgres** : Base de données pour Airflow.
+**MongoDB** : Base de données NoSQL utilisée pour stocker les données traitées.
+**Airflow** : Plusieurs services pour exécuter Apache Airflow (Scheduler, Webserver, Init).
+**Superset** : Pour la visualisation des données.
+**Redis et MySQL** : Pour d'autres services liés à Airflow et à la gestion des flux de travail.
 Il inclut également des volumes pour persister les données et des réseaux pour connecter les services.
 
 
@@ -27,11 +27,12 @@ Extraire les données : Il envoie une requête GET à une API pour extraire des 
 Transformer les données : Après avoir récupéré les données au format JSON, le script les convertit en un DataFrame Pandas, applique des transformations pour calculer des moyennes journalières, et organise les colonnes de manière spécifique.
 Charger dans MongoDB : Les données transformées sont ensuite converties en format JSON et insérées dans une base de données MongoDB.
 
+## La fonction main() automatise les étapes nécessaires pour :
 
-
-**ETL.py** :
-Ce script utilise les fonctions définies dans data_processing.py pour exécuter le pipeline ETL. Il traite deux stations de données en les extrayant, les transformant et en les chargeant dans MongoDB
-
+Collecter,
+Transformer,
+Stocker,
+Charger les données des stations dans une base de données MongoDB.
 
 **DAG Airflow (dags/)** :
 Le fichier DAG définit un flux de travail dans Apache Airflow pour exécuter les scripts ETL et de traitement des données :
